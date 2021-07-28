@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%=title %>
+        </title>
+        <style>
+            h1{text-align: center;}
+        </style>
+    </head>
+    <body>
+        <h1>What is Endiannes?</h1>
+        <p>Endianness is a fundamental part of how computers read and understand bytes.</p>
+        <p>Each computer is internally consistent for their own data. It's just the internet has enabled us to share more data than we ever have before, and our data is not always read in the same order.</p>
+        <p>Endianness is represented two ways <b>Big-endian (BE)</b> and <b>Little-endian (LE).</b></p>
+        <ul>
+            <li>
+                BE stores the big-end first. When reading multiple bytes the first byte (or the lowest memory address) is the biggest - so it makes the most sense to people who read left to right.
+            </li>
+            <li>
+                LE stores the little-end first. When reading multiple bytes the first byte (or the lowest memory address) is the littlest -  so it makes most sense to people who read right to left.
+            </li>
+        </ul>
+        <a href="/dashboard">Return to Dashboard</a>
+    </body>
+</html>
