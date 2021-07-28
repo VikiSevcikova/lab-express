@@ -63,7 +63,6 @@ const page = `
             <td>
                 <ul>
                     ${Object.keys(os.networkInterfaces()).map((key)=>`<li>${key}: ${os.networkInterfaces()[key][0].address} ${os.networkInterfaces()[key][0].family}</li>`).join("")}
-                    ${Object.keys(os.networkInterfaces()).map((key)=> console.log(`${key}: ${os.networkInterfaces()[key][0].address} ${os.networkInterfaces()[key][0].family}`))}
                 </ul>
             </td>
         </tr>

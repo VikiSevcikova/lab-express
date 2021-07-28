@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <style>
+        h1{text-align: center;}
+    </style>
+    <body>
+        <h1>Upload File</h1>
+        <form action="/fs" method="POST" enctype="multipart/form-data">
+            <input type="file" name="upload"/>
+            <input type="submit" value="Upload"/>
+        </form>
+        <a href="/fs">Return to FS Module Page</a>
+    </body>
+</html>

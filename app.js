@@ -23,7 +23,7 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.get('/endiannes', (req, res) => {
-    res.render('endiannes', {title: 'What is Endiannes'});
+    res.sendFile(path.join(__dirname, '/pages/endiannes.html'));
 });
 
 app.get('/assert', (req, res) => {
@@ -34,22 +34,28 @@ app.get('/fs', (req, res) => {
     res.send(fs.getPage());
 });
 
+app.get('/fs/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, '/pages/upload.html'));
+})
+
 app.post('/fs/upload', (req, res, next) => {
     const form = new formidable.IncomingForm();
-    let uploadFolder = path.join(__dirname, 'files')
+    const folder = path.join(__dirname, 'files');
     form.maxFileSize = 50 * 1024 * 1024; // 5MB
-    form.uploadDir = uploadFolder;
-    form.parse(req, function(err, fields, files){
-        let oldPath = files.textFile.path;
-        let uploadFolder = path.join(__dirname, 'files')
-                + '/'+files.profilePic.name
-        let rawData = fs.readFileSync(oldPath)
-              
-        fs.writeFile(uploadFolder, rawData, function(err){
-            if(err) console.log(err)
-            return res.send("Successfully uploaded")
-        })
-  })
+    form.uploadDir = folder;
+    form.parse(req)
+
+    form.on('fileBegin', function(name, file){
+        let fileType = file.type.split('/').pop();
+        if(fileType != 'txt'){
+            console.error( 'incorrect file type: ' + fileType );
+            return;
+        }
+    });
+    form.on('file', function (name, file){
+        console.log('Uploaded ' + file.name);
+    });
+    res.send(fs.getPage());
 });
 
 app.listen(port, () => console.log('Listening to port: ', port));
